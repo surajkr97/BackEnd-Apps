@@ -10,6 +10,14 @@ app.get('/', (req, res) => {
   res.send('Hello World! This is my first backend app.');
 });
 
+app.get('/admin', (req, res) => {
+  res.send('Hello World! This is my first admin page.');
+});
+
+app.get('/student', (req, res) => {
+  res.send('Hello World! This is my first student page.');
+});
+
 //starting the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
