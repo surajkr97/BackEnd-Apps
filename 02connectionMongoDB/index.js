@@ -1,20 +1,13 @@
 const express = require('express');
 const app = express();
+const connectDB = require('./db');
+
 const PORT = 3000;
 
-const mongoose = require('mongoose');
+//body parser
+app.use(express.json());
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect('mongodb://localhost:27017/mydatabase', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('MongoDB connected');
-    } catch (error) {
-        console.error('MongoDB connection error:', error);
-    }
-};
+// Connect to MongoDB
 connectDB();
 
 app.get  ('/', (req, res) => {
