@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const connectDB = require('./db');
-const User = require('./models/userModel');
+const userRoutes = require('./routes/users');
+const adminRoutes = require('./routes/admin');
 
 const PORT = 3000;
 
@@ -11,7 +12,9 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-const users = require('./routes/users');
+// app.use('/api', User);
+app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get  ('/', (req, res) => {
     res.send('Hello World!');
