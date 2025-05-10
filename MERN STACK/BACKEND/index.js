@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const connectDB = require('./db');
-const userRoutes = require('./routes/users');
-const adminRoutes = require('./routes/admin');
+const connectDB = require("./db");
+const userRoutes = require("./routes/users");
+const adminRoutes = require("./routes/admin");
 
 const PORT = 3000;
 
@@ -13,14 +13,12 @@ app.use(express.json());
 connectDB();
 
 // app.use('/api', User);
-app.use('/api/users', userRoutes);
-app.use('/api/admin', adminRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/admin", adminRoutes);
 
-app.get  ('/', (req, res) => {
-    res.send('Hello World!');
-}
-);
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-}
-);
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
