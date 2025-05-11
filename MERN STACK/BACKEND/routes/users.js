@@ -18,7 +18,7 @@ router.get("/getUsers", async (req, res) => {
   }
 });
 
-router.post("/getuserbyemail", async (req, res) => {
+router.get("/getUserByEmail", async (req, res) => {
   try {
     const { email } = req.body;
     console.log(email);
@@ -53,6 +53,56 @@ router.post("/createUsers", async (req, res) => {
   } catch (err) {
     console.log("Inside catch block");
     res.status(400).json({ success: false, message: err.message });
+  }
+});
+
+//Update
+
+router.put("/updateUser/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password } = req.body;
+
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(id, {
+      name,
+      email,
+      password,
+    });
+    if (!updatedUser) {
+      res.json({
+        message: "User Not Found",
+      });
+    }
+    res.json({
+      success: true,
+      user: updatedUser,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+//Delete
+
+router.delete("/deleteUser/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedUser = await UserModel.findByIdAndDelete(id);
+    if (!deletedUser) {
+      res.json({ message: "User Not Found" });
+    }
+    res.json({
+      success: true,
+      user: deletedUser,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 });
 
