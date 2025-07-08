@@ -12,7 +12,7 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// app.use('/api', User);
+// app.use('/api', User), use the routers;
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 
